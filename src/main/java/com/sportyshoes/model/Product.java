@@ -35,15 +35,18 @@ public class Product {
 	
 	@Column(name="price")
 	private Float price;
+	
+	@Column(name="qty")
+	private Integer qty;
 
-	@OneToMany(mappedBy="lineItem")
+	@OneToMany(mappedBy="product")
 	private List<LineOrderItem> lineItems = new ArrayList<LineOrderItem>();
 	
 	public Product() {
 		super();
 	}
 
-	public Product(String name, String gender, String style, String brand, Float size, Float price) {
+	public Product(String name, String gender, String style, String brand, Float size, Float price, Integer qty) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -51,6 +54,7 @@ public class Product {
 		this.brand = brand;
 		this.size = size;
 		this.price = price;
+		this.qty = qty;
 	}
 
 	public String getName() {
@@ -105,10 +109,18 @@ public class Product {
 		return id;
 	}
 
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Product [id=%s, name=%s, gender=%s, style=%s, brand=%s, size=%s, price=%s]", id, name,
-				gender, style, brand, size, price);
+		return String.format("Product [id=%s, name=%s, gender=%s, style=%s, brand=%s, size=%s, price=%s qty=%s]", id, name,
+				gender, style, brand, size, price, qty);
 	}
 	
 	

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 
-	<display-name>spoty-shoes</display-name>
+	<display-name>sporty-shoes</display-name>
 
 	<absolute-ordering />
 
@@ -26,5 +26,10 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<context-param>
+		<param-name>profile</param-name>
+		<param-value>/WEB-INF/application.properties</param-value>
+	</context-param>
 	
 </web-app>
