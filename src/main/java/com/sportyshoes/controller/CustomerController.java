@@ -1,14 +1,17 @@
 package com.sportyshoes.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sportyshoes.model.Customer;
 import com.sportyshoes.repository.GenericRepository;
@@ -46,15 +49,23 @@ public class CustomerController {
 	
 	
 	@PostMapping("/saveCustomer")
-	public String saveCustmer(@ModelAttribute("customer") Customer customer, Model model) {
+	public String saveCustmer(@ModelAttribute("customer") Customer customer, Model model, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
 		
+		System.out.println(customer.getBirthday());
+		
+		//convert date format to ISO format
+		localDate = customer.getBirthday();
+		
+		customer.setBirthday(localDate);
+		
+		System.out.println(customer.getBirthday());
 		customerRepository.save(customer);
 		
 		
 		return "redirect:/customer/list";
 	}
 	
-	@GetMapping("/showFormUpdate")
+	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("customerId") int id, Model model) {
 		
 		//Retrieve customer from customer repository by id
@@ -64,6 +75,14 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "customer-form";
+	}
+	
+	@GetMapping("delete")
+	public String deleteCustomer(@RequestParam("customerId") int id) {
+		
+		customerRepository.deleteById(id);
+		
+		return "redirect:/customer/list";
 	}
 
 }
