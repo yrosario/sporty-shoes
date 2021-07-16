@@ -1,10 +1,8 @@
 package com.sportyshoes.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +22,11 @@ public class ProductController {
 	private GenericRepository<Product> productRepository;
 	
 	@GetMapping("/list")
-	public String getCustomerList(Model model) {
+	public String getProductList(Model model) {
 		
 		List<Product> products = productRepository.getList();
 		
-		model.addAttribute("product", products);
+		model.addAttribute("products", products);
 		
 		return "product-list";
 				
@@ -46,7 +44,7 @@ public class ProductController {
 	
 	
 	@PostMapping("/saveProduct")
-	public String saveCustmer(@ModelAttribute("product") Product product, Model model) {
+	public String saveProduct(@ModelAttribute("product") Product product, Model model) {
 
 		
 		productRepository.save(product);
@@ -56,7 +54,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("customerId") int id, Model model) {
+	public String showFormForUpdate(@RequestParam("productId") int id, Model model) {
 		
 		//Retrieve product from product repository by id
 		Product product = productRepository.getById(id);
@@ -68,7 +66,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("delete")
-	public String deleteCustomer(@RequestParam("productId") int id) {
+	public String deleteProduct(@RequestParam("productId") int id) {
 		
 		productRepository.deleteById(id);
 		
