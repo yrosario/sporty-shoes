@@ -31,7 +31,7 @@
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sporty_shoes_db?useSSL=false&amp;serverTimezone=UTC" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sporty_shoes_db?allowPublicKeyRetrieval=true&amp;useSSL=false" />
         <property name="user" value="test" />
         <property name="password" value="test" /> 
 

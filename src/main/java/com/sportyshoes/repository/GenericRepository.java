@@ -6,7 +6,7 @@ public interface GenericRepository<T> {
 	
 	public List<T> getList();
 	public T getById(Integer id);
-	public void updateById(Integer id);
+	public void save(T targetObj);
 	public void deleteById(Integer id);
 
 }

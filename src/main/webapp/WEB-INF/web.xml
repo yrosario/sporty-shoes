@@ -27,9 +27,5 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<context-param>
-		<param-name>profile</param-name>
-		<param-value>/WEB-INF/application.properties</param-value>
-	</context-param>
 	
 </web-app>
