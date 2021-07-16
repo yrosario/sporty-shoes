@@ -58,6 +58,7 @@ public class ProductRepositoryImpl implements GenericRepository<Product> {
 	public void deleteById(Integer id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
+		@SuppressWarnings("rawtypes")
 		Query query =
 				currentSession.createQuery("delete from Product where id=:productId");
 		query.setParameter("productId", id);
